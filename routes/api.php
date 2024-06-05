@@ -12,7 +12,8 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'authentication'
 ], function ($route) {
-    Route::get('/user',[AuthenticationController::class, 'getUser']);
     Route::post('/register', [AuthenticationController::class, 'register']);
     Route::post('/login', [AuthenticationController::class, 'login']);
 });
+
+Route::get('/user', [AuthenticationController::class, 'getUser']);
