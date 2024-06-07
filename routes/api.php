@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ReviewsController;
+use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api', AuthMiddleware::class],
     'prefix' => 'productos'
 ], function ($route) {
     Route::get('/all-enabled', [ProductsController::class, 'getAllProductsEnabled']);
@@ -33,7 +34,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => 'api',
+    'middleware' => ['api', AuthMiddleware::class],
     'prefix' => 'reviews'
 ], function ($route) {
     Route::get('/all', [ReviewsController::class, 'showAllReviews']);
