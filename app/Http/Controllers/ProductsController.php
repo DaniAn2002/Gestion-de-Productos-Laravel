@@ -64,6 +64,7 @@ class ProductsController extends Controller
     public function addProducts(Request $request)
     {
         $repeated_product = Products::where('nombre', $request->nombre)->first();
+
         if ($repeated_product) {
             return response()->json([
                 'status' => false,

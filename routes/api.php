@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ReviewsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,5 +30,15 @@ Route::group([
     Route::patch('/update/{id}', [ProductsController::class, 'updateProduct']);
     Route::post('/disable/{id}', [ProductsController::class, 'disableProduct']);
     Route::post('/enable/{id}', [ProductsController::class, 'enableProduct']);
+});
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'reviews'
+], function ($route) {
+    Route::get('/all', [ReviewsController::class, 'showAllReviews']);
+    Route::post('/create', [ReviewsController::class, 'createReview']);
+    Route::get('/category/{category}', [ReviewsController::class, 'getReviewByproductCategory']);
+    Route::get('/product/{name}', [ReviewsController::class, 'getReviewByProductName']);
 });
 
