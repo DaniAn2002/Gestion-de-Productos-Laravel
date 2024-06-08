@@ -34,7 +34,7 @@ Route::group([
 });
 
 Route::group([
-    'middleware' => ['api', AuthMiddleware::class],
+    'middleware' => 'api',
     'prefix' => 'reviews'
 ], function ($route) {
     Route::get('/all', [ReviewsController::class, 'showAllReviews']);

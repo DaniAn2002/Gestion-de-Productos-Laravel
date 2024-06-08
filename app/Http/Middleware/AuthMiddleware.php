@@ -23,7 +23,7 @@ class AuthMiddleware
                 'status' => false,
                 'message' => 'Unathorized',
                 'data' => 'No data'
-            ]);
+            ], 401);
         }
 
         $token = explode(' ', $authHeader)[1];
@@ -32,7 +32,7 @@ class AuthMiddleware
                 'status' => false,
                 'message' => 'Unathorized',
                 'data' => 'No data'
-            ]);
+            ], 401);
         }
         try {
             $user = JWTAuth::parseToken()->authenticate($token);
